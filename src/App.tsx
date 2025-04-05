@@ -1,18 +1,10 @@
-
-import { Toaster } from "@/components/ui/toaster";
 import { useState } from "react";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AppProvider } from '@/context/AppContext';
-import Dashboard from '@/pages/Dashboard';
-import Donadores from '@/pages/Donadores';
-import Donaciones from '@/pages/Donaciones';
-import Inventario from '@/pages/Inventario';
-import Empleados from '@/pages/Empleados';
+import Dashboard from "@/pages/Dashboard";
+import Donadores from "@/pages/Donadores";
+import Donaciones from "@/pages/Donaciones";
+import Inventario from "@/pages/Inventario";
+import Empleados from "@/pages/Empleados";
 import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState("dashboard"); // El estado para manejar la vista actual
@@ -38,27 +30,17 @@ const App = () => {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AppProvider>
-          <Toaster />
-          <Sonner />
-          <div>
-            {/* Navbar o botones de navegación */}
-            <nav>
-              <button onClick={() => navigateTo("dashboard")}>Dashboard</button>
-              <button onClick={() => navigateTo("donadores")}>Donadores</button>
-              <button onClick={() => navigateTo("donaciones")}>Donaciones</button>
-              <button onClick={() => navigateTo("inventario")}>Inventario</button>
-              <button onClick={() => navigateTo("empleados")}>Empleados</button>
-            </nav>
+    <div>
+      <nav>
+        <button onClick={() => navigateTo("dashboard")}>Dashboard</button>
+        <button onClick={() => navigateTo("donadores")}>Donadores</button>
+        <button onClick={() => navigateTo("donaciones")}>Donaciones</button>
+        <button onClick={() => navigateTo("inventario")}>Inventario</button>
+        <button onClick={() => navigateTo("empleados")}>Empleados</button>
+      </nav>
 
-            {/* Aquí renderizas la "página" correspondiente */}
-            {renderPage()}
-          </div>
-        </AppProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
+      {renderPage()}
+    </div>
   );
 };
 
